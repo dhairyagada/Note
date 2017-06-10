@@ -14,10 +14,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     TextView textView;
+    Button btnviewlist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btnviewlist=(Button)findViewById(R.id.button_viewnote);
+        showList();
 
         textView=(TextView)findViewById(R.id.notes_id);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -42,6 +46,22 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    public void showList()
+    {
+        btnviewlist.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v1)
+                    {
+                        Intent intent = new Intent(MainActivity.this, ViewNotes.class);
+                        startActivity(intent);
+                    }
+                }
+        );
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
