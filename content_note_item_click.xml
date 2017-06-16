@@ -43,6 +43,13 @@
         app:layout_constraintTop_toBottomOf="@+id/cnic_notecontent_edtxt"
         android:text="SAVE CHANGES"
         tools:layout_editor_absoluteX="8dp" />
+    <Button
+        android:layout_width="368dp"
+        android:layout_height="48dp"
+        android:id="@+id/cnic_delete_btn"
+        app:layout_constraintTop_toBottomOf="@+id/cnic_save_btn"
+        android:text="DELETE"
+        tools:layout_editor_absoluteX="8dp" />
 
 
 

@@ -17,6 +17,7 @@ public class NoteItemClickActivity extends AppCompatActivity {
     DatabaseHelper myDb;
     EditText note_item_title,note_item_content;
     Button btnsaveupdate;
+    Button btndelete;
     String stringid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class NoteItemClickActivity extends AppCompatActivity {
         final Cursor data1 = myDb.getAllData();
 
         btnsaveupdate=(Button)findViewById(R.id.cnic_save_btn);
-
+        btndelete=(Button)findViewById(R.id.cnic_delete_btn);
         int c=Integer.valueOf(message);
 
         data1.moveToFirst();
@@ -55,7 +56,7 @@ public class NoteItemClickActivity extends AppCompatActivity {
         note_item_content.setText(buffernotecontent.toString());
 
         UpdateData();
-
+        DeleteData();
 
 
 
@@ -86,6 +87,26 @@ public class NoteItemClickActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    public void DeleteData(){
+        btndelete.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Integer deletedRows = myDb.deleteData(stringid);
+                        if(deletedRows > 0)
+                            Toast.makeText(NoteItemClickActivity.this,"Data Deleted",Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(NoteItemClickActivity.this,"Data not Deleted",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(NoteItemClickActivity.this, ViewNotes.class);
+                        startActivity(intent);
+                    }
+
+                }
+        );
+
     }
 
     @Override
