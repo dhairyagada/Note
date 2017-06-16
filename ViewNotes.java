@@ -1,5 +1,6 @@
 package com.example.dhairya.note1;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 public class ViewNotes extends AppCompatActivity {
 
     DatabaseHelper mydb;
+    public final static String posnvarkey="listitem.position.key.string";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,7 @@ public class ViewNotes extends AppCompatActivity {
         ArrayList<String> Title_arraylist = new ArrayList<>();
         ArrayList<String> Note_arraylist=new ArrayList<>();
 
-        Cursor data = mydb.getAllData();
+        final Cursor data = mydb.getAllData();
 
         if (data.moveToFirst()) {
             do {
@@ -51,6 +54,24 @@ public class ViewNotes extends AppCompatActivity {
         );
 
         listView.setAdapter(la);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                int counter1=data.getCount();
+                for (int x=0;x<counter1;x++){
+                    if (position==x){
+                        String MESSAGE=(String)(Integer.toString(position));
+                        Intent myIntent=new Intent(view.getContext(),NoteItemClickActivity.class);
+                        myIntent.putExtra(posnvarkey,MESSAGE);
+                        startActivityForResult(myIntent,0);
+
+                    }
+                }
+
+            }
+        });
 
         data.close();
 
