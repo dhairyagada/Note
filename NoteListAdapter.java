@@ -62,7 +62,7 @@ public class NoteListAdapter extends BaseAdapter{
 
             holder = new Holder();
 
-            holder.textviewid = (TextView) child.findViewById(R.id.textViewID);
+           // holder.textviewid = (TextView) child.findViewById(R.id.textViewID);
             holder.textviewtitle = (TextView) child.findViewById(R.id.textViewTitle);
             holder.textviewnote=(TextView)child.findViewById(R.id.textViewNote);
 
@@ -73,7 +73,7 @@ public class NoteListAdapter extends BaseAdapter{
 
             holder = (Holder) child.getTag();
         }
-        holder.textviewid.setText(userID.get(position));
+       // holder.textviewid.setText(userID.get(position));
         holder.textviewtitle.setText(UserTitle.get(position));
         holder.textviewnote.setText(UserNote.get(position));
 
@@ -82,7 +82,7 @@ public class NoteListAdapter extends BaseAdapter{
     }
 
     public class Holder {
-        TextView textviewid;
+       // TextView textviewid;
         TextView textviewtitle;
         TextView textviewnote;
 
